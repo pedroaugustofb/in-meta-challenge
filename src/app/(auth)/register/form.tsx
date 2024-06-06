@@ -8,22 +8,45 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useDialog } from "@/hooks/useDialog";
+import { api } from "@/api";
+import { RegisterDto } from "@/types/auth/register.dto";
+import { useToast } from "@/components/ui/use-toast";
+import { Loader2 } from "lucide-react";
 
 export default function RegisterForm() {
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(schema),
   });
 
+  const { toast } = useToast();
+
   const erros = form.formState.errors;
+  const isSubmitting = form.formState.isSubmitting;
 
   const { onOpenChange: openDialog } = useDialog({ id: "success-register" });
 
-  const onSubmit = (data: RegisterFormValues) => {
-    console.log(data);
+  const onSubmit = async (data: RegisterFormValues) => {
+    try {
+      const body: RegisterDto = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      };
 
-    //TODO: use InMeta API to register user
+      const response = await api.auth.register(body);
 
-    openDialog();
+      console.log(response);
+
+      if (response.status === 201) openDialog();
+
+      throw new Error("Failed to register");
+    } catch (error) {
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -104,22 +127,11 @@ export default function RegisterForm() {
                 <FormDescription>You agree to our Terms of Service and Privacy Policy.</FormDescription>
               </div>
             </FormItem>
-
-            // <FormItem className="flex gap-2">
-            //   <FormControl>
-            //     <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-            //   </FormControl>
-            //   <FormDescription>
-            //     I agree to the{" "}
-            //     <span className="text-blue-700 duration-300 cursor-pointer hover:text-blue-800 border-b-2 border-blue-800">terms and conditions.</span>
-            //   </FormDescription>
-            //   {erros.terms && <FormMessage>{erros.terms.message}</FormMessage>}
-            // </FormItem>
           )}
         />
 
         <Button type="submit" variant="secondary" className="my-2" disabled={!form.watch("terms")}>
-          Register
+          {isSubmitting ? <Loader2 className="size-5 animate-spin" /> : <>Register</>}
         </Button>
       </form>
     </Form>
