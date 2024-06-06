@@ -6,7 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "../../../components/ui/checkbox";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useDialog } from "@/hooks/useDialog";
 
 export default function RegisterForm() {
   const form = useForm<RegisterFormValues>({
@@ -15,10 +16,14 @@ export default function RegisterForm() {
 
   const erros = form.formState.errors;
 
+  const { onOpenChange: openDialog } = useDialog({ id: "success-register" });
+
   const onSubmit = (data: RegisterFormValues) => {
     console.log(data);
 
     //TODO: use InMeta API to register user
+
+    openDialog();
   };
 
   return (
