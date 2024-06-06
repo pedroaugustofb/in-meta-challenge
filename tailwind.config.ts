@@ -13,6 +13,9 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: (theme) => ({
+        "bottom-right-green-gradient": "linear-gradient(304.38deg, rgba(16,185,129,0) 0.93%, rgba(16,185,129,0) 52.94%, rgba(16,185,129,0.42) 100%)",
+      }),
       fontSize: {
         "2xs": [
           "0.75rem",
@@ -32,42 +35,36 @@ const config = {
           "1rem",
           {
             fontWeight: "400",
-            lineHeight: "1.375rem",
           },
         ],
         lg: [
           "1.25rem",
           {
             fontWeight: "400",
-            lineHeight: "1.625rem",
           },
         ],
         xl: [
           "1.375rem",
           {
             fontWeight: "500",
-            lineHeight: "1.75rem",
           },
         ],
         "2xl": [
           "1.5rem",
           {
             fontWeight: "700",
-            lineHeight: "1.875rem",
           },
         ],
         "3xl": [
           "2.5rem",
           {
             fontWeight: "700",
-            lineHeight: "2.812",
           },
         ],
         "4xl": [
           "3.437rem",
           {
             fontWeight: "700",
-            lineHeight: "3.437rem",
           },
         ],
       },
