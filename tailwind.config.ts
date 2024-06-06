@@ -35,42 +35,36 @@ const config = {
           "1rem",
           {
             fontWeight: "400",
-            lineHeight: "1.375rem",
           },
         ],
         lg: [
           "1.25rem",
           {
             fontWeight: "400",
-            lineHeight: "1.625rem",
           },
         ],
         xl: [
           "1.375rem",
           {
             fontWeight: "500",
-            lineHeight: "1.75rem",
           },
         ],
         "2xl": [
           "1.5rem",
           {
             fontWeight: "700",
-            lineHeight: "1.875rem",
           },
         ],
         "3xl": [
           "2.5rem",
           {
             fontWeight: "700",
-            lineHeight: "2.812",
           },
         ],
         "4xl": [
           "3.437rem",
           {
             fontWeight: "700",
-            lineHeight: "3.437rem",
           },
         ],
       },
