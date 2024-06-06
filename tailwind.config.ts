@@ -13,6 +13,9 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: (theme) => ({
+        "bottom-right-green-gradient": "linear-gradient(304.38deg, rgba(16,185,129,0) 0.93%, rgba(16,185,129,0) 52.94%, rgba(16,185,129,0.42) 100%)",
+      }),
       fontSize: {
         "2xs": [
           "0.75rem",
