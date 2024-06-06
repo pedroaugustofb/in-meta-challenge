@@ -1,3 +1,4 @@
+import LoginForm from "./form";
 import LoginHeader from "./header";
 
 export default function Login() {
@@ -5,6 +6,7 @@ export default function Login() {
     <div className="flex w-full flex-col gap-5 lg:max-w-[500px]">
       <div className="grid lg:gap-5 w-full">
         <LoginHeader />
+        <LoginForm />
       </div>
     </div>
   );

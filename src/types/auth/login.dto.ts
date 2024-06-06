@@ -1,6 +1,9 @@
 // {
 //     "email": "example@test.com",
 //     "password": "123456"
+
+import { User } from "../entities/user";
+
 //   }
 export type LoginDto = {
   email: string;
@@ -17,9 +20,5 @@ export type LoginDto = {
 //   }
 export type LoginResponse = {
   token: string;
-  user: {
-    id: string;
-    name: string;
-    email: string;
-  };
+  user: User;
 };

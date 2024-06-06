@@ -135,8 +135,8 @@ export default function RegisterForm() {
           )}
         />
 
-        <Button type="submit" variant="secondary" className="my-2" disabled={!form.watch("terms")}>
-          {isSubmitting ? <Loader2 className="size-5 animate-spin" /> : <>Register</>}
+        <Button type="submit" variant="secondary" className="my-2" disabled={!form.watch("terms") || isSubmitting}>
+          {isSubmitting ? <Loader2 className="size-5 animate-spin" /> : "Register"}
         </Button>
       </form>
     </Form>
