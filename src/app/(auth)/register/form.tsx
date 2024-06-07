@@ -16,6 +16,13 @@ import { Loader2 } from "lucide-react";
 export default function RegisterForm() {
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      terms: false,
+    },
   });
 
   const { toast } = useToast();
@@ -34,8 +41,6 @@ export default function RegisterForm() {
       };
 
       const response = await api.auth.register(body);
-
-      console.log(response);
 
       if (response.status === 201) openDialog();
 
@@ -59,7 +64,7 @@ export default function RegisterForm() {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your name" {...field} />
+                <Input placeholder="Enter your name" autoComplete="username" {...field} />
               </FormControl>
               {erros.name && <FormMessage>{erros.name.message}</FormMessage>}
             </FormItem>
@@ -73,7 +78,7 @@ export default function RegisterForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your email" {...field} />
+                <Input placeholder="Enter your email" autoComplete="email" {...field} />
               </FormControl>
               {erros.email && <FormMessage>{erros.email.message}</FormMessage>}
             </FormItem>
@@ -88,7 +93,7 @@ export default function RegisterForm() {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Enter your password" {...field} />
+                  <Input type="password" autoComplete="new-password" placeholder="Enter your password" {...field} />
                 </FormControl>
                 {erros.password && <FormMessage>{erros.password.message}</FormMessage>}
               </FormItem>
@@ -102,7 +107,7 @@ export default function RegisterForm() {
               <FormItem>
                 <FormLabel>Password Confirmation</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Enter your chosen password" {...field} />
+                  <Input type="password" autoComplete="new-password" placeholder="Enter your chosen password" {...field} />
                 </FormControl>
                 {erros.confirmPassword && <FormMessage>{erros.confirmPassword.message}</FormMessage>}
               </FormItem>
@@ -130,8 +135,8 @@ export default function RegisterForm() {
           )}
         />
 
-        <Button type="submit" variant="secondary" className="my-2" disabled={!form.watch("terms")}>
-          {isSubmitting ? <Loader2 className="size-5 animate-spin" /> : <>Register</>}
+        <Button type="submit" variant="secondary" className="my-2" disabled={!form.watch("terms") || isSubmitting}>
+          {isSubmitting ? <Loader2 className="size-5 animate-spin" /> : "Register"}
         </Button>
       </form>
     </Form>
