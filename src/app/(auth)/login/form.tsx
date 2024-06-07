@@ -30,26 +30,14 @@ export default function LoginForm() {
 
   const onSubmit = async (data: LoginFormValues) => {
     try {
-      // const response = await api.auth.login(data);
+      const response = await api.auth.login(data);
 
-      // if (response.status !== 200) throw new Error("Failed to login");
+      if (response.status !== 200) throw new Error("Failed to login");
 
-      // setAuth({
-      //   token: response.data.token,
-      //   user: response.data.user,
-      // });
-
-      //TODO: Remove this mock
-      const mock: LoginResponse = {
-        token: "fake-token",
-        user: {
-          id: "1",
-          email: "test@email.com",
-          name: "Test User",
-        },
-      };
-
-      setAuth(mock);
+      setAuth({
+        token: response.data.token,
+        user: response.data.user,
+      });
 
       toast({
         title: "Success!",
