@@ -39,6 +39,7 @@ export default function LoginForm() {
       //   user: response.data.user,
       // });
 
+      //TODO: Remove this mock
       const mock: LoginResponse = {
         token: "fake-token",
         user: {
@@ -114,7 +115,7 @@ export default function LoginForm() {
           </Button>
         </div>
 
-        <Button type="submit" variant={"secondary"} disabled={isSubmitting} className="my-2">
+        <Button type="submit" disabled={isSubmitting} className="my-2">
           {isSubmitting ? <Loader2 className="size-5 animate-spin" /> : "Login"}
         </Button>
       </form>
