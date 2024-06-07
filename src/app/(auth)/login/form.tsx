@@ -22,7 +22,7 @@ export default function LoginForm() {
   });
 
   const { toast } = useToast();
-  const { setAuthentication } = useAuth();
+  const { setAuth } = useAuth();
   const router = useRouter();
 
   const erros = form.formState.errors;
@@ -49,7 +49,7 @@ export default function LoginForm() {
         },
       };
 
-      setAuthentication(mock);
+      setAuth(mock);
 
       toast({
         title: "Success!",

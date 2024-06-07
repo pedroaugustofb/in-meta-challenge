@@ -6,5 +6,5 @@ export type AuthContent = {
   token: string | null;
   user: User | null;
   isAuthenticated: boolean;
-  setAuthentication: (data: LoginResponse) => void;
+  setAuth: React.Dispatch<React.SetStateAction<LoginResponse | null>>;
 };
