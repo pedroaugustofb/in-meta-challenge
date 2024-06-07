@@ -10,7 +10,7 @@ import { Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/auth.context";
 import { useRouter } from "next/navigation";
-import { LoginResponse } from "@/types/auth/login.dto";
+import { api } from "@/api";
 
 export default function LoginForm() {
   const form = useForm<LoginFormValues>({
