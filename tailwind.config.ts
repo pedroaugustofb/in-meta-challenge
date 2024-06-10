@@ -17,6 +17,12 @@ const config = {
         "bottom-right-green-gradient": "linear-gradient(204.38deg, rgba(16,185,129,0) 0.93%, rgba(16,185,129,0) 52.94%, rgba(16,185,129,0.42) 100%)",
         "bottom-right-orange-gradient": "linear-gradient(204.38deg, rgba(249, 115, 22,0) 0.93%, rgba(249, 115, 22,0) 52.94%, rgba(249, 115, 22,0.42) 100%)",
       }),
+      gridAutoColumns: {
+        "grid-fill": "minmax(0, 1fr)",
+      },
+      screens: {
+        navbar_margin: "1560px",
+      },
       fontSize: {
         "2xs": [
           "0.75rem",

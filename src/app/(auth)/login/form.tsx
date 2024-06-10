@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/auth.context";
 import { useRouter } from "next/navigation";
 import { api } from "@/api";
+import axios from "@/api/config/axios";
 
 export default function LoginForm() {
   const form = useForm<LoginFormValues>({
@@ -33,6 +34,8 @@ export default function LoginForm() {
       const response = await api.auth.login(data);
 
       if (response.status !== 200) throw new Error("Failed to login");
+
+      axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
 
       setAuth({
         token: response.data.token,
