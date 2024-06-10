@@ -7,6 +7,7 @@ import { Trade } from "@/types/entities/trade";
 import SkeletonTradeCard from "@/components/cards/trade-card-skeleton";
 import TradeCard from "@/components/cards/trade-card";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import DeleteTradeDialog from "./delete-trade-dialog";
 
 export default function Trades() {
   const [page, setPage] = useState(1);
@@ -25,6 +26,7 @@ export default function Trades() {
 
   return (
     <>
+      <DeleteTradeDialog />
       <div className="grid gap-2 py-4">
         <div className="flex justify-between">
           <h2 className="text-lg font-semibold text-dark-700 whitespace-nowrap">Recent trades</h2>

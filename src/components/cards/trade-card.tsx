@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { formatDate } from "@/utils/date";
 import { useAuth } from "@/contexts/auth.context";
 import { useToast } from "@/components/ui/use-toast";
+import { useDialog } from "../../hooks/useDialog";
+import { useTrade } from "../../contexts/trade.context";
 
 export default function TradeCard({
   trade,
@@ -16,6 +18,14 @@ export default function TradeCard({
 }>) {
   const { isAuthenticated, user } = useAuth();
   const { toast } = useToast();
+  const { onOpenChange } = useDialog({ id: "delete-trade" });
+  const { setDeleteTradeId } = useTrade();
+
+  const onDelete = async (id: string) => {
+    setDeleteTradeId(id);
+    onOpenChange();
+  };
+
   return (
     <Card className="w-full rounded-md">
       <CardHeader>
@@ -53,7 +63,7 @@ export default function TradeCard({
         </Button>
 
         {isAuthenticated && user?.id === trade.userId && (
-          <Button variant="destructive" className=" w-full">
+          <Button onClick={() => onDelete(trade.id)} variant="destructive" className=" w-full">
             Delete trade
           </Button>
         )}

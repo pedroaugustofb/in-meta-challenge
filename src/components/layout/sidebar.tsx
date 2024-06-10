@@ -14,16 +14,19 @@ export const links = [
     label: "Marketplace",
     path: "/",
     icon: <HomeIcon className="size-6" />,
+    protected: false,
   },
   {
-    label: "Trades",
+    label: "Create a trade",
     path: "/trades",
     icon: <Replace className="size-6" />,
+    protected: true,
   },
   {
-    label: "My Cards",
+    label: "My cards",
     path: "/my-cards",
     icon: <WalletCards className="size-6" />,
+    protected: true,
   },
 ];
 
@@ -44,16 +47,21 @@ export default function Sidebar() {
         </div>
         <div className="flex-1">
           <div className="grid gap-4 pt-36">
-            {links.map(({ label, path, icon }, index) => (
-              <Link
-                href={path}
-                key={`${label}-${path}`}
-                className={twMerge(`${active === index ? "bg-secondary-500" : "hover:bg-primary-400/80"}`, navButtonClass)}
-              >
-                {icon}
-                <span className={navButtonLabelClass}>{label}</span>
-              </Link>
-            ))}
+            {links
+              .filter((link) => {
+                if (link.protected) return isAuthenticated;
+                return true;
+              })
+              .map(({ label, path, icon }, index) => (
+                <Link
+                  href={path}
+                  key={`${label}-${path}`}
+                  className={twMerge(`${active === index ? "bg-secondary-500" : "hover:bg-primary-400/80"}`, navButtonClass)}
+                >
+                  {icon}
+                  <span className={navButtonLabelClass}>{label}</span>
+                </Link>
+              ))}
           </div>
         </div>
         {isAuthenticated && (

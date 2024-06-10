@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "../contexts/auth.context";
 import ReactQueryProvider from "../providers/tanstack";
+import { TradeProvider } from "../contexts/trade.context";
 
 export const metadata: Metadata = {
   title: "InMeta Challenge",
@@ -18,10 +19,12 @@ export default function RootLayout({
     <html lang="en">
       <AuthProvider>
         <ReactQueryProvider>
-          <body className="bg-gray-50">
-            {children}
-            <Toaster />
-          </body>
+          <TradeProvider>
+            <body className="bg-gray-50">
+              {children}
+              <Toaster />
+            </body>
+          </TradeProvider>
         </ReactQueryProvider>
       </AuthProvider>
     </html>
