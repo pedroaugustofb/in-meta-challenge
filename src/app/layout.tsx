@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "../contexts/auth.context";
+import ReactQueryProvider from "../providers/tanstack";
 
 export const metadata: Metadata = {
   title: "InMeta Challenge",
@@ -16,10 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <body className="bg-gray-50">
-          {children}
-          <Toaster />
-        </body>
+        <ReactQueryProvider>
+          <body className="bg-gray-50">
+            {children}
+            <Toaster />
+          </body>
+        </ReactQueryProvider>
       </AuthProvider>
     </html>
   );

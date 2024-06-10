@@ -5,6 +5,7 @@ import { navButtonClass, navButtonLabelClass } from "../layout/sidebar";
 import { twMerge } from "tailwind-merge";
 import { useAuth } from "@/contexts/auth.context";
 import { useRouter } from "next/navigation";
+import axios from "../../api/config/axios";
 
 export default function LogoutButton() {
   const { setAuth } = useAuth();
@@ -12,6 +13,7 @@ export default function LogoutButton() {
 
   const onLogout = () => {
     setAuth(null);
+    axios.defaults.headers["Authorization"] = null;
     router.push("/");
   };
   return (

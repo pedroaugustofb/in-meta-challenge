@@ -10,9 +10,9 @@ export default function LoginLayout({
     <main>
       <Sidebar />
       <div className="flex w-full flex-col items-center lg:pl-[100px] lg:pr-12 navbar_margin:pl-2">
-        <div className="grid w-full max-w-[1360px] gap-4 p-4 md:gap-11">
+        <div className="grid w-full max-w-[1360px] gap-4 p-4 pt-0 md:gap-11">
           <div className="flex w-full flex-col items-center lg:pl-[100px] lg:pr-12 navbar_margin:pl-2">
-            <div className="grid w-full max-w-[1360px] gap-4 p-4 px-0">
+            <div className="grid w-full max-w-[1360px] gap-4">
               <Header />
               {children}
             </div>
