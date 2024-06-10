@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Logo from "@/app/favicon.ico";
 import { twMerge } from "tailwind-merge";
-import { HomeIcon, Replace } from "lucide-react";
+import { HomeIcon, Replace, WalletCards } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LogoutButton from "../buttons/logout";
@@ -19,6 +19,11 @@ export const links = [
     label: "Trades",
     path: "/trades",
     icon: <Replace className="size-6" />,
+  },
+  {
+    label: "My Cards",
+    path: "/my-cards",
+    icon: <WalletCards className="size-6" />,
   },
 ];
 
