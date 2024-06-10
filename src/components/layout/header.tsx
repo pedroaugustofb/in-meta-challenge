@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/contexts/auth.context";
-import { Menu, UserCircle } from "lucide-react";
+import { UserCircle } from "lucide-react";
 import DrawerMobile from "./drawer-mobile";
 
 export default function Header() {
