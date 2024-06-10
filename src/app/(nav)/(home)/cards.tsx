@@ -4,15 +4,23 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { api } from "@/api";
 import { Card } from "@/types/entities/card";
-import { Card as CardShadcn, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card as CardShadcn, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { formatDate } from "@/utils/date";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { Image } from "lucide-react";
+import { Image, PlusCircle } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/auth.context";
+import { useDialog } from "@/hooks/useDialog";
+import { useCard } from "@/contexts/card.context";
 
 export default function Cards() {
   const [page, setPage] = useState(1);
   const rpp = 8;
+
+  const { isAuthenticated } = useAuth();
+  const { onOpenChange } = useDialog({ id: "add-card" });
+  const { setCard } = useCard();
 
   const { data, isFetching } = useQuery({
     queryKey: ["get-cards", { page }],
@@ -85,6 +93,21 @@ export default function Cards() {
                     <CardDescription>Created at {formatDate(card.createdAt)}</CardDescription>
                     <CardDescription>{card.description}</CardDescription>
                   </CardContent>
+                  {isAuthenticated && (
+                    <CardFooter>
+                      <Button
+                        className="w-full"
+                        variant="secondary"
+                        onClick={() => {
+                          setCard(card);
+                          onOpenChange();
+                        }}
+                      >
+                        Add to account
+                        <PlusCircle className="size-4 ml-2" />
+                      </Button>
+                    </CardFooter>
+                  )}
                 </CardShadcn>
               ))}
         </div>
