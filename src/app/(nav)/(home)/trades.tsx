@@ -53,7 +53,7 @@ export default function Trades() {
             </PaginationContent>
           </Pagination>
         </div>
-        <div className="grid grid-cols-4 gap-4 w-full">
+        <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-4 w-full">
           {isFetching && Array.from({ length: rpp }).map((_, i) => <SkeletonTradeCard key={`skeleton-${i}`} />)}
           {!isFetching && data?.list.map((trade: Trade) => <TradeCard trade={trade} key={trade.id} />)}
         </div>

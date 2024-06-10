@@ -19,11 +19,7 @@ export const useDialog = ({ id }: { id: string }) => {
       params.set(id, "active");
     }
 
-    if (params.size === 0) return router.push(pathname);
-
-    if (params.size === 1) return router.push(`${pathname}?${params.toString()}`);
-
-    return router.push(`${pathname}&${params.toString()}`);
+    return router.push(`${pathname}?${params.toString()}`);
   };
 
   return { open, onOpenChange };

@@ -56,7 +56,7 @@ export default function Cards() {
           </Pagination>
         </div>
 
-        <div className="grid grid-cols-4 gap-4 w-full">
+        <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-4 w-full">
           {isFetching &&
             Array.from({ length: rpp }).map((_, i) => (
               <div key={`skeleton-card-${i}`} className="bg-gray-50 w-full rounded-lg grid gap-2">

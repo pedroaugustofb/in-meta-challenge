@@ -1,4 +1,4 @@
-import GoToHome from "@/components/ui/buttons/go-back-home";
+import GoToHome from "@/components/buttons/go-back-home";
 
 export default function RegisterHeader() {
   return (
