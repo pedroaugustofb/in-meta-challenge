@@ -8,9 +8,10 @@ import Link from "next/link";
 import { links, navButtonClass } from "./sidebar";
 import { twMerge } from "tailwind-merge";
 import { usePathname } from "next/navigation";
-import LogoutButton from "../buttons/logout";
+import { useAuth } from "@/contexts/auth.context";
 
 export default function DrawerMobile() {
+  const { isAuthenticated } = useAuth();
   const pathname = usePathname();
   const active = links.findIndex((link) => link.path === pathname);
 
@@ -25,16 +26,21 @@ export default function DrawerMobile() {
         </DrawerHeader>
         <div className="flex-1">
           <div className="grid gap-4 p-4">
-            {links.map(({ label, path, icon }, index) => (
-              <Link
-                href={path}
-                key={`${label}-${path}`}
-                className={twMerge(`${active === index ? "bg-secondary-500" : "hover:bg-primary-400/80"}`, navButtonClass)}
-              >
-                {icon}
-                <span>{label}</span>
-              </Link>
-            ))}
+            {links
+              .filter((link) => {
+                if (link.protected) return isAuthenticated;
+                return true;
+              })
+              .map(({ label, path, icon }, index) => (
+                <Link
+                  href={path}
+                  key={`${label}-${path}`}
+                  className={twMerge(`${active === index ? "bg-secondary-500" : "hover:bg-primary-400/80"}`, navButtonClass)}
+                >
+                  {icon}
+                  <span>{label}</span>
+                </Link>
+              ))}
           </div>
         </div>
       </DrawerContent>
