@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import CardsOffering from "./cards-offering";
 import CardsRecieving from "./cards-recieving";
 import { useTrade } from "@/contexts/trade.context";
-import { CreateTradeDto } from "../../../types/trades/create-trade.dto";
-import { api } from "../../../api";
-import { useToast } from "../../../components/ui/use-toast";
+import { CreateTradeDto } from "@/types/trades/create-trade.dto";
+import { api } from "@/api";
+import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 
 export default function TradesPage() {

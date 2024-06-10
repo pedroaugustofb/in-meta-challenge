@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { formatDate } from "@/utils/date";
 import { useAuth } from "@/contexts/auth.context";
 import { useToast } from "@/components/ui/use-toast";
-import { api } from "@/api";
 import { useDialog } from "../../hooks/useDialog";
 import { useTrade } from "../../contexts/trade.context";
 
