@@ -5,11 +5,14 @@ import { Button } from "@/components/ui/button";
 import { api } from "@/api";
 import { useToast } from "@/components/ui/use-toast";
 import { useTrade } from "@/contexts/trade.context";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function DeleteTradeDialog() {
   const { open, onOpenChange } = useDialog({ id: "delete-trade" });
   const { toast } = useToast();
   const { deleteTradeId } = useTrade();
+
+  const queryClient = useQueryClient();
 
   const onDelete = async () => {
     await api.trades.delete(deleteTradeId);
@@ -18,6 +21,12 @@ export default function DeleteTradeDialog() {
       title: "Trade deleted",
       description: "The trade has been deleted successfully",
     });
+
+    queryClient.invalidateQueries({
+      queryKey: ["get-trades"],
+    });
+
+    onOpenChange();
   };
 
   return (
